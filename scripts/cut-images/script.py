@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-img_dir_path = 'images/'
+img_dir_path = './images/'
 
 # define the size of the cuts and return size
 width_cut = 300
@@ -20,8 +20,8 @@ if len(imgs) == 0:
 
 for img in imgs:
     img_path = os.path.join(img_dir_path, img)
-    with Image.open(img_path) as im:
-        width, height = im.size
+    with Image.open(img_path) as image:
+        width, height = image.size
 
         # get the number of cuts in width and height and add 1 to guarantee that will have cuts for all the image
         num_cuts_width = (width // width_cut) + 1
@@ -59,5 +59,7 @@ for img in imgs:
                     bot_left = bot_right - height_cut
 
                 # crop and save the cut in created directory of the image
-                im_cropped = im.crop((top_left, bot_left, top_right, bot_right))
+                im_cropped = image.crop((top_left, bot_left, top_right, bot_right))
                 im_cropped.save(os.path.join(new_dir_path, f"cut_{i}_{j}.jpg"))
+
+        print('They were made', num_cuts_width * num_cuts_height, 'cuts in the image', img, 'and saved in the directory', new_dir_path)
