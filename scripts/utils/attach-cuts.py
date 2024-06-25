@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-dir_path = 'cut-images/images/'
+dir_path = '../cut-images/images/'
 
 # Get the list of directories
 dirs = [d for d in os.listdir(dir_path) if os.path.isdir(os.path.join(dir_path, d))]
